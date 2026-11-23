@@ -7,7 +7,7 @@
 
 ---
 
-## 🏛️ Deskripsi Proyek
+## Deskripsi Proyek
 
 Proyek ini merupakan kelanjutan dari aplikasi *The Code of Hammurabi* yang sebelumnya dibangun pada sisi frontend (React + Vite). Pada pekan ke-9 ini, fondasi arsitektur **backend RESTful API** dibangun menggunakan framework **NestJS** berbasis pola **Model-View-Controller (MVC)**.
 
@@ -15,7 +15,7 @@ Backend bertugas mengelola data utama monolit hukum secara terstruktur dengan fi
 
 ---
 
-## 📂 Struktur Repositori
+## Struktur Repositori
 
 ```text
 code-of-hammurabi-nest/
@@ -60,7 +60,7 @@ code-of-hammurabi-nest/
 
 ---
 
-## 📋 Pemenuhan Butir Tugas Bab 9
+## Pemenuhan Butir Tugas Bab 9
 
 ### 1. Data Utama yang Dikelola
 Data utama aplikasi ini adalah **Law (Titah / Pasal Hukum Hammurabi)**, merepresentasikan klausul hukum monumental pada prasasti monolit Babilonia yang mengatur tiga strata kasta (*Awilum*, *Mushkenum*, *Wardum*).
@@ -130,7 +130,7 @@ Aplikasi menangani skenario error tematik:
 
 ---
 
-## 🧪 Pengujian REST Client (Langkah 7)
+## Pengujian REST Client (Langkah 7)
 
 Seluruh endpoint diuji secara nyata menggunakan REST Client (`test-api.http`):
 
@@ -181,13 +181,13 @@ Seluruh endpoint diuji secara nyata menggunakan REST Client (`test-api.http`):
 
 ---
 
-## 🌐 Integrasi Frontend + Backend (Langkah 8)
+## Integrasi Frontend + Backend (Langkah 8)
 
 Frontend React telah disesuaikan untuk berkomunikasi langsung dengan backend NestJS:
 - **Alur Read**: Mengambil data saat aplikasi dimuat via `GET /laws`.
 - **Alur Create**: Formulir "Pahat Titah Baru" mengirim `POST /laws`.
-- **Alur Update**: Tombol "✏️ Ubah Titah" membuka modal interaktif dan mengirim `PATCH /laws/:id`.
-- **Alur Delete**: Tombol "🗑️ Hapus Titah" memicu konfirmasi dan mengirim `DELETE /laws/:id`.
+- **Alur Update**: Tombol "Ubah Titah" membuka modal interaktif dan mengirim `PATCH /laws/:id`.
+- **Alur Delete**: Tombol "Hapus Titah" memicu konfirmasi dan mengirim `DELETE /laws/:id`.
 - **Error Handling UI**: Menampilkan pesan kesalahan langsung dari backend jika terjadi duplikasi nomor pasal (`ConflictException`) atau input tidak valid (`BadRequestException`).
 
 ### Tangkapan Layar Integrasi Frontend:
@@ -222,7 +222,7 @@ Jika pengguna mencoba memahat nomor pasal yang sudah terdaftar (misal pasal 196)
 
 ---
 
-## 🚀 Panduan Menjalankan Aplikasi
+## Panduan Menjalankan Aplikasi
 
 ### Prasyarat
 - **Node.js** (v18 atau lebih baru)
@@ -247,10 +247,3 @@ npm run dev
 Frontend akan berjalan di: `http://localhost:5173`
 
 ---
-
-## 🏆 Kepatuhan Kriteria Pengumpulan
-- [x] Kode disimpan di repositori GitHub baru: `code-of-hammurabi-nest`.
-- [x] README lengkap dengan nama proyek, deskripsi, dan penjelasan langkah 1–8.
-- [x] Screenshot request & response REST Client lengkap (10 skenario) tersimpan di `docs/screenshots/`.
-- [x] Screenshot integrasi alur penuh frontend tersimpan di `docs/screenshots/`.
-- [x] Quality gates (Typecheck, Lint, Test) lulus 100%.
