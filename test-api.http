@@ -1,0 +1,100 @@
+### ===================================================================
+### THE CODE OF HAMMURABI - NESTJS REST API TEST SUITE
+### Base URL: http://localhost:3001/laws
+### ===================================================================
+
+@baseUrl = http://localhost:3001/laws
+
+### 1. GET ALL LAWS (Semua Titah Hukum pada Prasasti)
+### Menampilkan seluruh array titah hukum dari memory
+GET {{baseUrl}}
+Accept: application/json
+
+###
+
+### 2. GET LAW BY ID (Ambil Titah Tertentu - Success 200 OK)
+GET {{baseUrl}}/1
+Accept: application/json
+
+###
+
+### 3. GET LAW BY ID - NOT FOUND (Error Scenario 1: 404 NotFoundException)
+### Mencari id yang tidak ada pada prasasti monolit
+GET {{baseUrl}}/999
+Accept: application/json
+
+###
+
+### 4. POST CREATE LAW (Pahat Titah Baru - Success 201 Created)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "pasalNum": 48,
+  "title": "Moratorium Bunga Utang Banjir",
+  "caste": "Awilum",
+  "text": "Jika seseorang berutang dan badai menghancurkan hasil panennya, ia tidak berkewajiban membayar bunga pada tahun itu.",
+  "logic": "Perlindungan debitur sektor pertanian Babilonia terhadap force majeure bencana alam sungai Efrat dan Tigris.",
+  "isActive": true
+}
+
+###
+
+### 5. POST CREATE LAW - DUPLICATE PASAL (Error Scenario 2: 409 ConflictException)
+### Mencoba memahat pasal 196 yang sudah ada pada prasasti
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "pasalNum": 196,
+  "title": "Duplikasi Hukum Lex Talionis",
+  "caste": "Awilum",
+  "text": "Pasal tiruan yang mencoba menduplikasi hukum mata ganti mata."
+}
+
+###
+
+### 6. POST CREATE LAW - VALIDATION ERROR (Class-Validator Error: 400 Bad Request)
+### Uji validasi: nomor pasal negatif, kasta tidak valid, teks terlalu pendek
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "pasalNum": -5,
+  "title": "X",
+  "caste": "Alien",
+  "text": "No"
+}
+
+###
+
+### 7. PATCH UPDATE LAW (Perbarui Titah Hukum - Success 200 OK)
+PATCH {{baseUrl}}/1
+Content-Type: application/json
+
+{
+  "title": "Hukum Lex Talionis (Revisi Resmi Mahkamah)",
+  "logic": "Pembaharuan teks interpretasi hukum pembalasan setimpal antar-bangsawan Babilonia."
+}
+
+###
+
+### 8. PATCH UPDATE LAW - NOT FOUND (Error Scenario: 404 NotFoundException)
+PATCH {{baseUrl}}/999
+Content-Type: application/json
+
+{
+  "title": "Mencoba Mengubah Titah Fiktif"
+}
+
+###
+
+### 9. DELETE LAW (Hapus Titah dari Prasasti - Success 200 OK)
+DELETE {{baseUrl}}/4
+Accept: application/json
+
+###
+
+### 10. DELETE LAW - NOT FOUND (Error Scenario: 404 NotFoundException)
+DELETE {{baseUrl}}/999
+Accept: application/json
